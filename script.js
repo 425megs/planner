@@ -1,48 +1,38 @@
+//Displays date at top of page
 $(document).ready(function () {
     var today = moment().format("MMM Do YY");
     $('#currentDay').text(today);
 })
 
-var toDo = $('textarea')
+// This should pull the name out of data-time
+var label = document.querySelector('label')
+var time = document.querySelector("#hour")
+label.dataset.time
 
-var timeNow;
+// I think this will pull the current time for me to compare to 
+var timeNow = moment().format("LT");
+
+// need to do moment to pull the current time, then use the for loop to compare the moment data to the data-time
+// only need the hour highlighted when the page refreshes, not running all day
+// Function that will compare something against the hour to know which section to highlight (past, present, future)
+
+// function highlight() {
+//     for (let i = 0; i < 9; i++)
+//         if (time < timeNow) {
+//             console.log("hi")
+//         } else if (time === timeNow) {
+//                 then style accorng to .present
+//         }   else { 
+//                 then style with .future
+//         }
+// }
+
 // Want the save button to push to localStorage
-function saveButton(event) {
-    event.preventDefault();
-    console.log(event.target.parentElement)
-}
+// function saveButton(event) {
+//     var toDo = $('textarea')
+//     event.preventDefault();
+// }
 
-//only need the hour highlighted when the page refreshes, not running all day
-
-// Function thatll push to localStorage
-
-
-
-// Need to push from local storage to page so when page refreshes data stays on page 
-
-// Need an array that aligns with each hour. 0 for 9am, 1 for 10am, etc 
-
-// dataset, set index for hours
-
-// if statement to do nothing if there is nothing in the planner
-
-// compare something against the hoour to know which section to highlight (past, present
-
-// Function that will check the time and highlight past/present/future accordingly 
-function update() {
-    for (let i = 0; i < 9; i++) {
-        var time = toDo.children().eq(i).children().eq(2).data('time') +9;
-
-        if (time < timeNow) {
-            toDo.children().eq(i).children().eq(1).addClass('past');
-        } else if (time === timeNow) {
-            toDo.children().eq(i).children().eq(1).addClass('present');
-        } else {
-            toDo.children().eq(i).children().eq(1).addClass('future')
-        }
-    }
-}
-
-update();
+highlight();
 // JSON parse when pulling
 // JSON stringify when saving to local storage
