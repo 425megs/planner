@@ -4,24 +4,26 @@ $(document).ready(function () {
     $('#currentDay').text(today);
 })
 
-// Do I need 2 variables to pull the number out of data-time? If I don't include the label element I get "undefined" error
+// Pulls current time and data-time out of HTML doc
 var element = document.querySelector("label");
-// I think this will pull the current time for me to compare to 
 var timeNow = moment().format("LT");
 
-// TODO: Function that will use moment to pull the current time, then use the for loop to compare the moment data to the data-time and highlight past/present/future accordingly) -- doesn't seem to be working
-// function highlight() {
-//     var time = element.getAttribute("data-time");
-//     var timeNow = moment().format("LT");
-//     for (let i = 0; i < 9; i++) 
-//         if (time < timeNow) {
-//             time.setAttribute(".past");
-//         } else if (time === timeNow) {
-//             time.setAttribute(".present");
-//         }   else { 
-//             time.setAttribute(".future");        
-//         }
-// }
+// Function will use moment to pull current time, then use the for loop to compare the moment data to the data-time and highlight past/present/future accordingly)
+function highlight() {
+    var time = element.getAttribute("data-time");
+    var timeNow = moment().format("LT");
+    for (let i = 0; i < 9; i++) 
+        if (time < timeNow) {
+            $("textarea").removeClass("present future");
+            $("textarea").addClass("past");
+        } else if (time === timeNow) {
+            $("textarea").removeClass("past future");            
+            $("textarea").addClass("present");
+        }   else { 
+            $("textarea").removeClass("present past");
+            $("textarea").addClass("future");  
+        }
+}
 
 // Want the save button to push to localStorage
 function saveButton(event) {
@@ -30,13 +32,11 @@ function saveButton(event) {
 
     localStorage.setItem("textSection", toDo);
 }
-//this is CLOSE ^ 
 
-function displayToDos() {
-    var toDo = localStorage.getItem("toDo")
-}
+// function displayToDos() {
+//     var toDo = localStorage.getItem("toDo")
+// }
 
 
-// Call one highlight function works
-// highlight();
+highlight();
 
