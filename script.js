@@ -14,24 +14,24 @@ function highlight() {
     var timeNow = moment().format("LT");
     for (let i = 0; i < 9; i++) 
         if (time < timeNow) {
-            $("textarea").removeClass("present future");
+            // $("textarea").removeClass("present future");
             $("textarea").addClass("past");
         } else if (time === timeNow) {
-            $("textarea").removeClass("past future");            
+            // $("textarea").removeClass("past future");            
             $("textarea").addClass("present");
         }   else { 
-            $("textarea").removeClass("present past");
+            // $("textarea").removeClass("present past");
             $("textarea").addClass("future");  
         }
 }
 
 // Want the save button to push to localStorage
-function saveButton(event) {
-    var toDo = $('textarea')
-    event.preventDefault();
+// function saveButton(event) {
+//     var toDo = $('textarea')
+//     event.preventDefault();
 
-    localStorage.setItem("textSection", toDo);
-}
+//     localStorage.setItem("textSection", toDo);
+// }
 
 // function displayToDos() {
 //     var toDo = localStorage.getItem("toDo")
